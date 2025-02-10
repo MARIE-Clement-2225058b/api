@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\CitationRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CitationRepository::class)]
+#[ApiResource]
 class Citation
 {
     #[ORM\Id]
@@ -14,37 +15,52 @@ class Citation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::TEXT)]
-    private ?string $text = null;
+    #[ORM\Column(length: 255)]
+    private ?string $citation = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $auteur = null;
+    #[ORM\Column(length: 255)]
+    private ?string $Auteur = null;
+
+    #[ORM\Column]
+    private ?bool $existe = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTexte(): ?string
+    public function getCitation(): ?string
     {
-        return $this->text;
+        return $this->citation;
     }
 
-    public function setTexte(string $test): static
+    public function setCitation(string $citation): static
     {
-        $this->text = $test;
+        $this->citation = $citation;
 
         return $this;
     }
 
     public function getAuteur(): ?string
     {
-        return $this->auteur;
+        return $this->Auteur;
     }
 
-    public function setAuteur(?string $auteur): static
+    public function setAuteur(string $Auteur): static
     {
-        $this->auteur = $auteur;
+        $this->Auteur = $Auteur;
+
+        return $this;
+    }
+
+    public function isExiste(): ?bool
+    {
+        return $this->existe;
+    }
+
+    public function setExiste(bool $existe): static
+    {
+        $this->existe = $existe;
 
         return $this;
     }

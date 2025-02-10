@@ -1,36 +1,76 @@
 <?php
+
 namespace App\DataFixtures;
 
+use App\Entity\Citation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Citation;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $citations = [
-            ["La vie est un mystère qu'il faut vivre, et non un problème à résoudre.", "Gandhi"],
-            ["Le succès, c'est tomber sept fois, se relever huit.", "Proverbe japonais"],
-            ["Faites que le rêve dévore votre vie afin que la vie ne dévore pas votre rêve.", "Saint-Exupéry"],
-            ["Le seul vrai échec est l'abandon.", "Confucius"],
-            ["Il n'y a pas de hasard, il n'y a que des rendez-vous.", "Paul Éluard"],
-            ["L'imagination est plus importante que le savoir.", "Albert Einstein"],
-            ["La connaissance parle, mais la sagesse écoute.", "Jimi Hendrix"],
-            ["Le bonheur n'est pas quelque chose de prêt à l'emploi. Il vient de vos propres actions.", "Dalai Lama"],
-            ["La plus grande gloire n'est pas de ne jamais tomber, mais de se relever à chaque chute.", "Nelson Mandela"],
-            ["La vie est ce qui arrive quand vous êtes occupé à faire d'autres projets.", "John Lennon"]
-        ];
 
-        for ($i = 0; $i < 10; $i++) {
-            $data = $citations[array_rand($citations)];
+        // on insert des citations inspirantes
+        $citation1 = new Citation();
+        $citation1->setCitation("Le succès, c'est d'aller d'échec en échec sans perdre son enthousiasme.");
+        $citation1->setAuteur("Winston Churchill");
+        $citation1->setExiste(true);
+        $manager->persist($citation1);
 
-            $citation = new Citation();
-            $citation->setTexte($data[0])
-                ->setAuteur($data[1]);
+        $citation2 = new Citation();
+        $citation2->setCitation("Soyez le changement que vous voulez voir dans le monde.");
+        $citation2->setAuteur("Mahatma Gandhi");
+        $citation2->setExiste(true);
+        $manager->persist($citation2);
 
-            $manager->persist($citation);
-        }
+        $citation3 = new Citation();
+        $citation3->setCitation("Les grandes réalisations sont toujours précédées par de grandes idées.");
+        $citation3->setAuteur("Albert Einstein");
+        $citation3->setExiste(false);
+        $manager->persist($citation3);
+
+        $citation4 = new Citation();
+        $citation4->setCitation("Un jour, nous vivrons tous dans des maisons faites de chocolat et de marshmallow.");
+        $citation4->setAuteur("Inconnu");
+        $citation4->setExiste(false);
+        $manager->persist($citation4);
+
+        $citation5 = new Citation();
+        $citation5->setCitation("La seule limite à notre épanouissement de demain est nos doutes d'aujourd'hui.");
+        $citation5->setAuteur("Franklin D. Roosevelt");
+        $citation5->setExiste(true);
+        $manager->persist($citation5);
+
+        $citation6 = new Citation();
+        $citation6->setCitation("La patience est la clé du succès, sauf si vous attendez que les pizzas tombent du ciel.");
+        $citation6->setAuteur("Un sage anonyme");
+        $citation6->setExiste(false);
+        $manager->persist($citation6);
+
+        $citation7 = new Citation();
+        $citation7->setCitation("Les licornes existent, elles se cachent juste très bien.");
+        $citation7->setAuteur("Un explorateur intrépide");
+        $citation7->setExiste(false);
+        $manager->persist($citation7);
+
+        $citation8 = new Citation();
+        $citation8->setCitation("Ne jugez pas chaque jour à la récolte que vous faites mais aux graines que vous semez.");
+        $citation8->setAuteur("Robert Louis Stevenson");
+        $citation8->setExiste(true);
+        $manager->persist($citation8);
+
+        $citation9 = new Citation();
+        $citation9->setCitation("Le talent, c'est comme l'électricité. On ne sait pas trop ce que c'est, mais ça peut illuminer une pièce.");
+        $citation9->setAuteur("Maya Angelou");
+        $citation9->setExiste(true);
+        $manager->persist($citation9);
+
+        $citation10 = new Citation();
+        $citation10->setCitation("Si vous croyez en vous autant que votre chat croit être un lion, vous réussirez.");
+        $citation10->setAuteur("Un sage du web");
+        $citation10->setExiste(false);
+        $manager->persist($citation10);
 
         $manager->flush();
     }
